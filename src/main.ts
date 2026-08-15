@@ -29,11 +29,11 @@ if (app) {
           <div class="hero__content">
             <p class="hero__eyebrow">Web & Mobile App Developer</p>
             <h1 class="hero__title">
-              I build modern web and mobile experiences.
+              I build modern web and mobile applciations that are scalable, reliable, and user-friendly.
             </h1>
             <p class="hero__subtitle">
               This portfolio showcases selected projects across web and mobile,
-              highlighting clean architecture, great UX, and performant frontends.
+              highlighting clean architecture and user-centered design to make your customers and clients return for more.
             </p>
             <div class="hero__actions">
               <a href="#projects" class="btn btn--primary">View Projects</a>
@@ -67,14 +67,14 @@ if (app) {
             <p>
               I love solving problems and building products that help people. 
               I am a full stack developer with a passion for building web and mobile applications.
-               I am a quick learner and always looking for new challenges to improve my skills.
+               I am a quick learner and always looking for new challenges to improve my skills and help others succeed in their projects.
             </p>
           </div>
           <div class="about__grid">
             <div>
               <h3>What I do</h3>
               <p>
-                My focus areas are building production-ready utility web apps and mobile apps.
+                My focus areas are building production-ready utility websites, web apps and mobile apps.
               </p>
             </div>
             <div>
@@ -128,27 +128,28 @@ if (app) {
           </div>
 
           <div class="projects__grid">
-            <article class="project-card">
-              <div class="project-card__badge">Mobile</div>
+          
+              <article class="project-card">
+              <div class="project-card__badge">Full-stack</div>
               <a
                 class="project-card__image"
-                href="https://ecosika-5780b.web.app/"
+                href="https://moyowears.web.app"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Open Ecosika"
+                aria-label="Open Moyo Wears"
               >
-                <img src="/1.png" alt="Ecosika screenshot" />
+                <img src="/1.png" alt="Moyo Wears" />
               </a>
               <div class="project-card__body">
-                <h3>Ecosika</h3>
+                <h3>Moyo Wears</h3>
                 <p>
-                  Ecosika is a web app that helps you recycle waste plastic bottles and 
-                  earn money by selling them to the company.
+                  Your one stop shop for anything hoddies and t-shirts. 
+                  Shop now, create your own designs, and have them delivered to your doorstep.
                 </p>
                 <div class="project-card__tags">
                   <span>React</span>
+                  <span>Node.js</span>
                   <span>Firebase</span>
-                  <span>Tailwind CSS</span>
                 </div>
               </div>
             </article>
@@ -160,12 +161,12 @@ if (app) {
                 href="https://physagug.org/"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Open Physagug"
+                aria-label="Open PHYSAG-UG"
               >
-                <img src="/2.png" alt="Physagug screenshot" />
+                <img src="/2.png" alt="PHYSAG-UG screenshot" />
               </a>
               <div class="project-card__body">
-                <h3>Physag UG Student App</h3>
+                <h3>PHYSAG UG Student App</h3>
                 <p>
                     This app helps the association to manage student registration and an 
                     online store for purchasing products.
@@ -173,6 +174,8 @@ if (app) {
                 <div class="project-card__tags">
                   <span>React</span>
                   <span>API</span>
+                  <span>Firebase</span>
+                  <span>Paystack</span>
                 </div>
               </div>
             </article>
@@ -191,7 +194,7 @@ if (app) {
               <div class="project-card__body">
                 <h3>Offrscafe</h3>
                 <p>
-                  Offrscafe is a web app for the best coffee shop in the ehart of Accra. 
+                  Offrscafe is a web app for the best coffee shop in the heart of Accra. 
                   Order online and have it delivered to your doorstep.
                 </p>
                 <div class="project-card__tags">
@@ -203,63 +206,43 @@ if (app) {
               </div>
             </article>
 
+            
+            
             <article class="project-card">
-              <div class="project-card__badge">Web</div>
+              <div class="project-card__badge">Mobile</div>
               <a
                 class="project-card__image"
-                href="https://thehyve-582d4.web.app/"
+                href="https://ecosika-5780b.web.app/"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Open Thehyve"
+                aria-label="Open Ecosika"
               >
-                <img src="/4.png" alt="Thehyve screenshot" />
+                <img src="/4.png" alt="Ecosika screenshot" />
               </a>
               <div class="project-card__body">
-                <h3>The Hyve</h3>
+                <h3>Ecosika</h3>
                 <p>
-                  This is an online game where you can play with your friends and family 
-                  for both web and mobile. Win, and withdraw your winnings.
+                  Ecosika is a web app that helps you recycle waste plastic bottles and 
+                  earn money by selling them to the company.
                 </p>
                 <div class="project-card__tags">
-                  <span>Flutter</span>
+                  <span>React</span>
                   <span>Firebase</span>
+                  <span>Tailwind CSS</span>
                 </div>
               </div>
             </article>
 
-            <article class="project-card">
-              <div class="project-card__badge">Full-stack</div>
-              <a
-                class="project-card__image"
-                href="https://management-system-78060.web.app/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Open Church Management System"
-              >
-                <img src="/5.png" alt="Management System screenshot" />
-              </a>
-              <div class="project-card__body">
-                <h3>The Church Monitor</h3>
-                <p>
-                  management system for a church to manage their members, attendance, and financials.
-                </p>
-                <div class="project-card__tags">
-                  <span>React</span>
-                  <span>Node.js</span>
-                  <span>Firebase</span>
-                </div>
-              </div>
-            </article>
-            <article class="project-card">
+                        <article class="project-card">
               <div class="project-card__badge">Web</div>
               <a
                 class="project-card__image"
-                href="https://grader-webapp.web.app/"
+                href="grader-d8760.web.app"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Open Grade-R"
               >
-                <img src="/6.png" alt="Grade-R screenshot" />
+                <img src="/5.png" alt="Grade-R screenshot" />
               </a>
               <div class="project-card__body">
                 <h3>Grade-R</h3>
@@ -269,8 +252,108 @@ if (app) {
                 </p>
                 <div class="project-card__tags">
                   <span>Flutter</span>
+                  <span>React</span>
                   <span>Firebase</span>
-                  <span>AI</span>
+                  <span>Gemini AI</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card__badge">Web</div>
+              <a
+                class="project-card__image"
+                href="https://bg-naturals.web.app/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open BGNaturals"
+              >
+                <img src="/6.png" alt="BGNaturals screenshot" />
+              </a>
+              <div class="project-card__body">
+                <h3>BG Naturals</h3>
+                <p>
+                  BG Naturals is an online store for natural products for your hair. No matter the type of hair, we have something for you.
+                  With just a tap, you can order your favorite products and have them delivered to your doorstep in no time.
+                </p>
+                <div class="project-card__tags">
+                  <span>React</span>
+                  <span>Paystack</span>
+                  <span>Firebase</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card__badge">Full-stack</div>
+              <a
+                class="project-card__image"
+                href="https://abatrades.com/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open Abatrades"
+              >
+                <img src="/8.png" alt="Abatrades screenshot" />
+              </a>
+              <div class="project-card__body">
+                <h3>Abatrades</h3>
+                <p>
+                  Free VIP signals, daily morning analysis on Gold, BTC, Silver and more, 
+                  plus a structured mentorship program that takes you from beginner to advanced.
+                </p>
+                <div class="project-card__tags">
+                  <span>React</span>
+                  <span>Firebase</span>
+                  <span>Python</span>
+                  <span>Paystack</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card__badge">Web</div>
+              <a
+                class="project-card__image"
+                href="https://physicstas.web.app/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open Physicstas"
+              >
+                <img src="/9.png" alt="Physicstas screenshot" />
+              </a>
+              <div class="project-card__body">
+                <h3>PhysicsTAs</h3>
+                <p>
+                  PhysicsTAs is an online platform for teaching assitance to keep accurate records of 
+                  students grades throughout their first year experience in the Physics lab.
+                </p>
+                <div class="project-card__tags">
+                  <span>Flutter</span>
+                  <span>Firebase</span>
+                </div>
+              </div>
+            </article>
+            
+            <article class="project-card">
+              <div class="project-card__badge">Web</div>
+              <a
+                class="project-card__image"
+                href="https://thehyve-582d4.web.app/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open Thehyve"
+              >
+                <img src="/7.png" alt="Thehyve screenshot" />
+              </a>
+              <div class="project-card__body">
+                <h3>The Hyve</h3>
+                <p>
+                  The Hyve is an online game where you can play with your friends and family 
+                  for both web and mobile. Win, and withdraw your winnings.
+                </p>
+                <div class="project-card__tags">
+                  <span>React</span>
+                  <span>Firebase</span>
                 </div>
               </div>
             </article>

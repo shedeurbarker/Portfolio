@@ -1,6 +1,15 @@
 {
   "projects": {
     "default": "myportfolio-e9a3c"
-  }
+  },
+  "targets": {
+    "myportfolio-e9a3c": {
+      "hosting": {
+        "default": [
+          "myportfolio-shedeur"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
-
