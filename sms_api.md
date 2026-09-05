@@ -26,6 +26,24 @@ https://us-central1-tamarsoftllc.cloudfunctions.net
 
 ---
 
+## 🖥️ Client SMS Web Portal (No-Code Dashboard)
+
+Prefer a visual interface over API calls? TamarSoft provides an interactive web portal where you can monitor your SMS credits, browse sent message logs, and inspect real-time delivery reports.
+
+* **Web Portal URL:** [https://tamarsoftllc.web.app/sms_portal](https://tamarsoftllc.web.app/sms_portal)
+* **Direct Auto-Login Link:**
+  ```
+  https://tamarsoftllc.web.app/sms_portal?key=YOUR_CLIENT_API_KEY
+  ```
+
+### What You Can Do in the Web Portal:
+1. **Live Balance & Credits:** Monitor your live SMS balance, remaining credits, and rate per page.
+2. **Sent Message History:** Browse, search, and filter all sent messages.
+3. **Interactive Delivery Reports:** Click **"Delivery Report"** on any message to view a real-time status modal showing every recipient (`Number — Status — Date/Time — Log ID`).
+4. **Instant Re-checks:** Refresh carrier delivery receipts live with a single click.
+
+---
+
 ## 📑 Table of Endpoints
 
 | Method | Endpoint | Description |
@@ -33,6 +51,7 @@ https://us-central1-tamarsoftllc.cloudfunctions.net
 | `POST` | `/sendSms` | Send SMS to one or more recipients |
 | `GET` | `/getDeliveryReport` | Check delivery report & status for a sent message |
 | `GET` | `/getSmsBalance` | Check your account SMS balance and available credits |
+| `GET` | `/getSmsHistory` | Retrieve your account overview and sent SMS history |
 
 ---
 
@@ -290,6 +309,46 @@ Check your current SMS account balance, remaining credits, and rate per SMS.
 
 ---
 
+## 4. 📜 Get SMS History
+
+Retrieve your sent message logs, total broadcasts, and account summary programmatically.
+
+- **URL:** `https://us-central1-tamarsoftllc.cloudfunctions.net/getSmsHistory`
+- **Method:** `GET`
+- **Headers:**
+  - `Authorization: Bearer YOUR_CLIENT_API_KEY`
+
+### Success Response (`200 OK`)
+
+```json
+{
+  "status": "success",
+  "client": {
+    "id": "client_12345",
+    "name": "Acme Corp",
+    "smsBalance": 98.45,
+    "credits": 1969.00,
+    "smsRate": 0.05,
+    "senderId": "Acme"
+  },
+  "history": [
+    {
+      "id": "doc_id_abc123",
+      "senderId": "Acme",
+      "message": "testing many numbers at once.",
+      "recipient": ["233245349574", "233240214327", "233209141666"],
+      "charge": 0.15,
+      "pages": 1,
+      "messageId": "0D939EB0-F717-4F40-92C3-4EEA3367BAC3",
+      "status": "success",
+      "date": "2026-09-05T12:45:10.123Z"
+    }
+  ]
+}
+```
+
+---
+
 ## 💻 Code Examples
 
 ### Node.js / JavaScript (Axios)
@@ -345,6 +404,17 @@ async function getBalance() {
     console.error('Error fetching balance:', error.response?.data || error.message);
   }
 }
+
+// 4. Get SMS History
+async function getHistory() {
+  try {
+    const response = await client.get('/getSmsHistory');
+    console.log('SMS History:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching history:', error.response?.data || error.message);
+  }
+}
 ```
 
 ---
@@ -371,6 +441,12 @@ curl -X GET "https://us-central1-tamarsoftllc.cloudfunctions.net/getDeliveryRepo
 #### Check Balance
 ```bash
 curl -X GET https://us-central1-tamarsoftllc.cloudfunctions.net/getSmsBalance \
+  -H "Authorization: Bearer YOUR_CLIENT_API_KEY"
+```
+
+#### Get SMS History
+```bash
+curl -X GET https://us-central1-tamarsoftllc.cloudfunctions.net/getSmsHistory \
   -H "Authorization: Bearer YOUR_CLIENT_API_KEY"
 ```
 
