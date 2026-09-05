@@ -69,16 +69,17 @@ Send single or bulk SMS messages to recipients. The cost per message page is aut
 
 | Field | Type | Required | Description |
 | :--- | :--- | :--- | :--- |
-| `recipient` | `array` or `string` | **Yes** | Phone number(s) to send to. Supports an **array of strings** (e.g. `["0245349574", "0248621614"]`) or a **comma-separated string** (e.g. `"0245349574, 0248621614"`). Max 200 recipients per request. |
+| `recipient` | `array` or `string` | **Yes** | Phone number(s) to send to. Supports an **array of strings** (e.g. `["0245349574", "0248621614"]`) or a **comma-separated string** (e.g. `"0245349574, 0248621614"`). Max 500 recipients per request. |
 | `message` | `string` | **Yes** | The text message content to be sent |
 
-> 📌 **Flexible Input Formats:**
+> 📌 **Flexible Input Formats & Smart Processing:**
 > - **Array:** `["233245349574", "233248621614"]` *(Recommended)*
 > - **Comma-separated string:** `"233245349574, 233248621614"`
 > - **Single number string:** `"233245349574"` or `["233245349574"]`
-> - Automatic sanitization removes whitespace, hyphens, and parentheses.
+> - **Automatic Sanitization:** Removes whitespace, hyphens, and parentheses.
+> - **Automatic Deduplication:** Duplicate phone numbers within the same request are automatically removed so clients are never billed twice for identical numbers in a batch.
 
-### Example 1: Array of Recipients
+### Example 1: Array of Recipients (Up to 500)
 
 ```json
 {
@@ -454,21 +455,80 @@ curl -X GET https://us-central1-tamarsoftllc.cloudfunctions.net/getSmsHistory \
 
 ## ⚠️ Error Responses & Status Codes
 
-| HTTP Code | Description | Example Cause |
-| :--- | :--- | :--- |
-| `200` | OK | Request succeeded |
-| `400` | Bad Request | Missing required parameters (`recipient`, `message`, or `id`) |
-| `401` | Unauthorized | Missing or invalid API key |
-| `402` | Payment Required | Insufficient SMS balance for sending |
-| `403` | Forbidden | SMS service is not enabled for your account |
-| `405` | Method Not Allowed | Incorrect HTTP method used |
-| `500` | Internal Server Error | Provider or backend processing error |
+### Quick Status Code Reference
+
+| HTTP Code | Status | Description | Action / Resolution |
+| :--- | :--- | :--- | :--- |
+| `200` | OK | Request succeeded | Process returned data |
+| `400` | Bad Request | Invalid or malformed request payload | Check error details in JSON response (see breakdown below) |
+| `401` | Unauthorized | Missing, expired, or invalid API Key | Verify Bearer token in `Authorization` header |
+| `402` | Payment Required | Insufficient account SMS balance | Top up your SMS balance on the portal |
+| `403` | Forbidden | SMS service is not enabled for this account | Contact TamarSoft admin to enable SMS service |
+| `405` | Method Not Allowed | Incorrect HTTP verb used (e.g. `GET` on `/sendSms`) | Use the correct HTTP method specified in this doc |
+| `500` | Internal Server Error | Upstream carrier or server failure | Retry after a few seconds or contact support |
 
 ---
 
-## 📏 Message Character Lengths
+### Detailed Breakdown of `400 Bad Request` Errors
 
-- **1 Page:** 1 – 160 characters
-- **2 Pages:** 161 – 306 characters
-- **3 Pages:** 307 – 459 characters
-- **Maximum Length:** 459 characters
+When a request returns HTTP `400`, inspect the `error` message in the JSON response to resolve the issue:
+
+#### 1. Missing Required Fields
+Returned when the body is missing `recipient` or `message`.
+```json
+{
+  "error": "Missing 'recipient' or 'message' fields"
+}
+```
+
+#### 2. Empty Recipient List
+Returned when `recipient` is an empty array `[]` or empty string `""`.
+```json
+{
+  "error": "No recipient phone numbers provided"
+}
+```
+
+#### 3. Invalid Phone Number Format
+Returned when one or more numbers are invalid (contain letters, or have fewer than 9 or more than 15 digits).
+```json
+{
+  "error": "Invalid phone number format for: 024534, invalid_num. Numbers must be 9 to 15 digits (e.g. '0245349574' or '233245349574')."
+}
+```
+
+#### 4. Exceeded Maximum Recipient Limit (> 500 Numbers)
+Returned when attempting to send to more than 500 phone numbers in a single API call.
+```json
+{
+  "error": "Maximum 500 recipients allowed per request (received 520)"
+}
+```
+
+#### 5. Message Exceeds Maximum Character Limit (> 459 Characters)
+Returned when the message length exceeds 459 characters (3 SMS pages).
+```json
+{
+  "error": "Message too long (max 459 characters)"
+}
+```
+
+#### 6. Missing Delivery Report ID
+Returned on `/getDeliveryReport` when neither `id` nor `messageId` query parameter is provided.
+```json
+{
+  "error": "Missing 'id' or 'messageId' parameter"
+}
+```
+
+---
+
+## 📏 Message Character Lengths & Billing
+
+SMS billing is calculated per message page per recipient:
+
+- **1 Page:** 1 – 160 characters (Charged as 1 SMS)
+- **2 Pages:** 161 – 306 characters (Charged as 2 SMS)
+- **3 Pages:** 307 – 459 characters (Charged as 3 SMS)
+- **Maximum Allowed Length:** 459 characters (Requests exceeding 459 characters are rejected with a 400 error)
+
